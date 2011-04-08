@@ -3,6 +3,48 @@
 /* Sass rules. */
 body {
   font: 14px/1.3 "Georgia", "lucida grande", "tahoma", serif, sans-serif;
-  background: #f9f9f9;
+  background: #ccccff;
   float: left;
   width: 100%; }
+
+h2 {
+  font-size: xx-large; }
+
+#header {
+  height: 80px;
+  background: #edf1f3;
+  padding: 0 5%; }
+  #header #logo {
+    float: left; }
+  #header .punch {
+    float: left;
+    margin-top: 43px;
+    font-size: 18px;
+    color: #2a8000; }
+
+#content {
+  padding: 1%;
+  max-width: 1200px;
+  min-width: 640px;
+  margin: 0 auto;
+  font-size: 15px; }
+  #content ul {
+    list-style: square inside; }
+    #content ul li {
+      padding: 1% 0; }
+  #content h2 {
+    border-bottom: 5px solid #3366a8;
+    margin-bottom: 10px;
+    color: #333333; }
+  #content .common-content, #content #about, #content #services, #content #contact {
+    width: 45%;
+    margin-bottom: 20px; }
+  #content #about {
+    float: left; }
+  #content #services {
+    float: right; }
+  #content #contact {
+    clear: both; }
+
+#footer {
+  clear: both; }

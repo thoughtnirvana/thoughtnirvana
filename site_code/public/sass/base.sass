@@ -1,40 +1,97 @@
 /* Variables */
 $silver: #f9f9f9
+$blue-light: #edf1f3
+$blue-pleasant: #3366a8
+$purple-light: #ccccff
+$cream: #e2e2b1
+$gray-dark: #32435c
+$black-light: #333333
+$gray-light: #ccc
+$error-red: #92000a
+$lime: #8cca12
+$lime-dark: #66a300
+$green-dark: #2a8000
+$orange: #f7a300
+$orange-dark: #ff7400
 
 
 /* Mixins */
 
 @mixin border-radius($radius)
-    border-radius: $radius
-    -moz-border-radius: $radius
-    -webkit-border-radius: $radius
+  border-radius: $radius
+  -moz-border-radius: $radius
+  -webkit-border-radius: $radius
 
 @mixin box-shadow($x, $y, $blur, $spread, $color)
-    $val: $x $y $blur $spread $color
-    box-shadow: $val
-    -webkit-box-shadow: $val
-    -moz-box-shadow: $val
-    -o-box-shadow: $val
+  $val: $x $y $blur $spread $color
+  box-shadow: $val
+  -webkit-box-shadow: $val
+  -moz-box-shadow: $val
+  -o-box-shadow: $val
 
 @mixin inner-box-shadow($x, $y, $blur, $spread, $color)
-    $val: inset $x $y $blur $spread $color
-
-    box-shadow: $val
-    -webkit-box-shadow: $val
-    -moz-box-shadow: $val
-    -o-box-shadow: $val
+  $val: inset $x $y $blur $spread $color
+  box-shadow: $val
+  -webkit-box-shadow: $val
+  -moz-box-shadow: $val
+  -o-box-shadow: $val
 
 @mixin min-height($height)
-    min-height: $height
-    height:auto !important
-    height: $height
+  min-height: $height
+  height:auto !important
+  height: $height
 
 
 /* Sass rules. */
 
 body
-    font: 14px/1.3 'Georgia', 'lucida grande','tahoma',serif, sans-serif
-    background: $silver
-    float: left
-    width: 100%
+  font: 14px/1.3 'Georgia', 'lucida grande','tahoma',serif, sans-serif
+  background: $purple-light
+  float: left
+  width: 100%
 
+h2
+  font-size: xx-large
+
+#header
+  height: 80px
+  background: $blue-light
+  padding: 0 5%
+
+  #logo
+    float: left
+  .punch
+    float: left
+    margin-top: 43px
+    font-size: 18px
+    color: $green-dark
+
+#content
+  padding: 1%
+  max-width: 1200px
+  min-width: 640px
+  margin: 0 auto
+  font-size: 15px
+  ul
+    list-style: square inside
+    li
+      padding: 1% 0
+  h2
+    border-bottom: 5px solid $blue-pleasant
+    margin-bottom: 10px
+    color: $black-light
+  .common-content
+    width: 45%
+    margin-bottom: 20px
+  #about
+    float: left
+    @extend .common-content
+  #services
+    float: right 
+    @extend .common-content
+  #contact
+    clear: both
+    @extend .common-content
+
+#footer
+  clear: both
