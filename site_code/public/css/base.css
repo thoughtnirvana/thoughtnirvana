@@ -10,6 +10,15 @@ body {
 h2 {
   font-size: xx-large; }
 
+a {
+  color: #3366a8;
+  text-decoration: none; }
+  a:hover {
+    color: #1b365a; }
+
+.punch {
+  color: #2a8000; }
+
 #header {
   height: 80px;
   background: #edf1f3;
@@ -19,8 +28,15 @@ h2 {
   #header .punch {
     float: left;
     margin-top: 43px;
-    font-size: 18px;
-    color: #2a8000; }
+    font-size: 18px; }
+
+#left {
+  float: left;
+  width: 47%; }
+
+#right {
+  float: right;
+  width: 47%; }
 
 #content {
   padding: 1%;
@@ -33,11 +49,10 @@ h2 {
     #content ul li {
       padding: 1% 0; }
   #content h2 {
-    border-bottom: 5px solid #3366a8;
+    border-bottom: 3px solid #004461;
     margin-bottom: 10px;
     color: #333333; }
   #content .common-content, #content #about, #content #services, #content #contact {
-    width: 45%;
     margin-bottom: 20px; }
   #content #about {
     float: left; }
