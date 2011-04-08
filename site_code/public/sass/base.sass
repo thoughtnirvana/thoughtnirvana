@@ -1,0 +1,40 @@
+/* Variables */
+$silver: #f9f9f9
+
+
+/* Mixins */
+
+@mixin border-radius($radius)
+    border-radius: $radius
+    -moz-border-radius: $radius
+    -webkit-border-radius: $radius
+
+@mixin box-shadow($x, $y, $blur, $spread, $color)
+    $val: $x $y $blur $spread $color
+    box-shadow: $val
+    -webkit-box-shadow: $val
+    -moz-box-shadow: $val
+    -o-box-shadow: $val
+
+@mixin inner-box-shadow($x, $y, $blur, $spread, $color)
+    $val: inset $x $y $blur $spread $color
+
+    box-shadow: $val
+    -webkit-box-shadow: $val
+    -moz-box-shadow: $val
+    -o-box-shadow: $val
+
+@mixin min-height($height)
+    min-height: $height
+    height:auto !important
+    height: $height
+
+
+/* Sass rules. */
+
+body
+    font: 14px/1.3 'Georgia', 'lucida grande','tahoma',serif, sans-serif
+    background: $silver
+    float: left
+    width: 100%
+

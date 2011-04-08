@@ -1,0 +1,8 @@
+/* Variables */
+/* Mixins */
+/* Sass rules. */
+body {
+  font: 14px/1.3 "Georgia", "lucida grande", "tahoma", serif, sans-serif;
+  background: #f9f9f9;
+  float: left;
+  width: 100%; }
