@@ -60,6 +60,19 @@ a {
     float: right; }
   #content #contact {
     clear: both; }
+  #content .team-member {
+    overflow: hidden;
+    margin-bottom: 10px; }
+    #content .team-member img {
+      float: left;
+      margin-right: 10px; }
+    #content .team-member .short-intro {
+      float: left; }
 
 #footer {
-  clear: both; }
+  clear: both;
+  width: 100%;
+  background: #333333;
+  height: 50px;
+  padding: 10px 5%;
+  color: #cccccc; }
