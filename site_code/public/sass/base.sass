@@ -45,11 +45,15 @@ $orange-dark: #ff7400
 
 /* Sass rules. */
 
+html
+  width: 100%
+  float: left
+
 body
   font: 14px/1.3 'Georgia', 'lucida grande','tahoma',serif, sans-serif
   background: $purple-light
-  float: left
   width: 100%
+  float: left
 
 h2
   font-size: xx-large
@@ -67,6 +71,7 @@ a
   height: 80px
   background: $blue-light
   padding: 0 5%
+  width: 100%
 
   #logo
     float: left
@@ -85,10 +90,12 @@ a
 
 #content
   padding: 1%
-  max-width: 1200px
-  min-width: 640px
-  margin: 0 auto
   font-size: 15px
+  width: 90%
+  min-width: 640px
+  max-width: 1200px
+  margin: 0 auto 20px 
+  overflow: hidden
   ul
     list-style: square inside
     li
