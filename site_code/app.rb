@@ -15,17 +15,19 @@ class App < Sinatra::Base
         set :clean_trace, true
     end
 
+    def send_static_asset(sender, *args)
+        expires 15552000, :public
+        last_modified Time.now() - 172800 
+        sender.call *args 
+    end
+
     configure :development do
         get %r(/css/ (.+?) \. (.*?\.)? css)x do |f, v| 
-            expires 15552000, :public
-            last_modified Time.now() - 172800 
-            sass :"sass/#{f}"
+            send_static_asset method(:sass), :"sass/#{f}"
         end
 
         get %r(/js/ (.+?) \. (.*?\.)? js)x do |f, v|
-            expires 15552000, :public
-            last_modified Time.now() - 172800 
-            coffee :"coffee/#{f}"
+            send_static_asset method(:coffee), :"coffee/#{f}"
         end
     end
 end

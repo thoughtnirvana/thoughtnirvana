@@ -20,7 +20,7 @@ class App < Sinatra::Base
                     return File.join dir_name, "#{name}.#{version}#{ext}"
                 else
                     file_path = File.join public_dir, resource_id
-                    # Change file paths to point coffee source for js and sass source for
+                    # Change file paths to point to coffee source for js and sass source for
                     # css if running under development.
                     env = settings.environment
                     if env != "production"
