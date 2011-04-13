@@ -8,6 +8,7 @@ class App < Sinatra::Base
     configure do
         enable :sessions
         enable :dump_errors
+        enable :logging
     end
 
     configure :production do
@@ -15,18 +16,17 @@ class App < Sinatra::Base
     end
 
     configure :development do
-        get %r{/css/(.+)\.css} do |f|
+        get %r(/css/ (.+?) \. (.*?\.)? css)x do |f, v| 
+            expires 15552000, :public
+            last_modified Time.now() - 172800 
             sass :"sass/#{f}"
-        end 
+        end
 
-        get %r{/js/(.+)\.js} do |f|
+        get %r(/js/ (.+?) \. (.*?\.)? js)x do |f, v|
+            expires 15552000, :public
+            last_modified Time.now() - 172800 
             coffee :"coffee/#{f}"
-        end 
-    end
-
-    helpers do
-        include Rack::Utils
-        alias_method :h, :escape_html
+        end
     end
 end
 
