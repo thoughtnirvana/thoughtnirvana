@@ -11,10 +11,12 @@ html
 
   body
     #header
-      == slim :_header
+      a#logo href="/" title="ThoughtNirvana"
+        img src="/img/logo.png"
+      span.punch Build. Innovate. Repeat.
 
     #content
       == yield
 
     #footer
-      == slim :_footer
+      span#copyright Copyright ThoughtNirvana 2011
