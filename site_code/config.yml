@@ -1,0 +1,7 @@
+environment: production
+user: thin 
+group: thin 
+port: 8000 
+pid: /home/thin/logs/thoughtnirvana/thin.pid
+log: /home/thin/logs/thoughtnirvana/thin.log
+tag: thoughtnirvana
