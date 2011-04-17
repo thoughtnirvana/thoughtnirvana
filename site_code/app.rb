@@ -18,17 +18,29 @@ class App < Sinatra::Base
     sender.call *args 
   end
 
+  # Serve versioned image files if it falls back to the framework.
+  get %r(/img/ (.+?) (\..+?)? (\..+)$)x do |f, v, ext| 
+    expires 15552000, :public
+    send_file File.join(STATIC_DIR, "img", "#{f}#{ext}" )
+  end
+
   configure :development do
+    # Generate css from sass.
     get %r(/css/ (.+?) \. (.+?\.)? css)x do |f, v| 
       send_static_asset method(:sass), :"sass/#{f}"
     end
 
+    # Generate js from coffeescript.
     get %r(/js/ (.+?) \. (.+?\.)? js)x do |f, v|
       send_static_asset method(:coffee), :"coffee/#{f}"
     end
+
   end
 
   configure :production do
+    # Serve from public directory. 
+    # Statics should be served from webserver.
+    # These rules are here basically for thin.
     get %r(/css/ (.+?) \. (.+?\.)? css)x do |f, v| 
       expires 15552000, :public
       send_file File.join(STATIC_DIR, "css", "#{f}.css" )
