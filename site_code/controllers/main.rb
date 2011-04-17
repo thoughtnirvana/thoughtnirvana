@@ -1,5 +1,6 @@
 class App < Sinatra::Base
-    get "/" do
-        slim :'main/main'
-    end
+  get "/" do
+    expires 300, :public
+    slim :'main/main'
+  end
 end
