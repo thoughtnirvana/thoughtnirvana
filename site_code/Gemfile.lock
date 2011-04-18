@@ -46,6 +46,7 @@ DEPENDENCIES
   capistrano
   coffee-script
   haml
+  highline
   shotgun
   sinatra
   slim

@@ -12,4 +12,5 @@ end
 
 group :production do
   gem "thin"
+  gem "highline"
 end

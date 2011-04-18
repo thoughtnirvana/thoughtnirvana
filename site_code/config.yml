@@ -2,6 +2,9 @@ environment: production
 user: ec2-user 
 group: ec2-user 
 port: 8000 
+chdir: /home/ec2-user/www/thoughtnirvana
 pid: /home/ec2-user/www/thoughtnirvana/tmp/thin.pid
 log: /home/ec2-user/www/thoughtnirvana/tmp/thin.log
+servers: 2
+daemonize: true
 tag: thoughtnirvana
