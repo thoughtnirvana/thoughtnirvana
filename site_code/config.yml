@@ -1,7 +1,7 @@
 environment: production
-user: thin 
-group: thin 
+user: ec2-user 
+group: ec2-user 
 port: 8000 
-pid: /home/thin/www/thoughtnirvana/tmp/thin.pid
-log: /home/thin/www/thoughtnirvana/tmp/thin.log
+pid: /home/ec2-user/www/thoughtnirvana/tmp/thin.pid
+log: /home/ec2-user/www/thoughtnirvana/tmp/thin.log
 tag: thoughtnirvana

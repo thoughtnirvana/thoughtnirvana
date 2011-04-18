@@ -1,6 +1,6 @@
 # Misc tasks.
 
-namespace :pre do
+namespace :pre_process do
   SASS_DIR = "views/sass"
   CSS_DIR = "public/css"
 
@@ -13,7 +13,6 @@ namespace :pre do
       sh "sass #{f} #{dest_file}"
     end
   end
-
 
   COFFEE_DIR = "views/coffee"
   JS_DIR = "public/js"
@@ -30,6 +29,48 @@ namespace :pre do
 
   desc "Master job for pre-processing."
   task convert: [:convert_sass, :convert_coffee] do
-    puts "Preprocessing completed."
+  end
+end
+
+EC2_KEY = "~/.ssh/aws.pem"
+EC2_USER = "ec2-user"
+EC2_HOST = "ec2-50-17-14-184.compute-1.amazonaws.com"
+SRC="."
+DEST="/home/ec2-user/www/thoughtnirvana"
+TIMESTAMP = Time.now.strftime TIMESTAMP
+
+namespace :pre_release do
+  desc "Tag the release."
+  task :git_tag do
+    sh "git tag -a #{TIMESTAMP} -m 'Pushing to EC2'"
+    sh "git push --tags"
+  end
+
+  desc "Stop previous release."
+  task :stop_prev do
+    stop_thin = "thin -C #{DEST}/config.yml -R #{DEST}/config.ru stop"
+    sh "ssh -i #{EC2_KEY} #{EC2_USER}@#{EC2_HOST} '#{stop_thin}'"
+    stop_nginx = "sudo kill $(#{DEST}/tmp/nginx.pid)"
+    sh "ssh -i #{EC2_KEY} #{EC2_USER}@#{EC2_HOST} '#{stop_nginx}'"
+  end
+
+  desc "Remove last release."
+  task :remove_prev => [:git_tag, :stop_thin]do
+    unlink_prev = "unlink #{DEST}"
+    sh "ssh -i #{EC2_KEY} #{EC2_USER}@#{EC2_HOST} '#{unlink_prev}'"
+  end
+end
+
+
+namespace :deploy do
+  desc "Push application to ec2."
+  task :push => ['pre_process:convert', 'pre_release:remove_prev'] do
+    timestamped_dest = "#{DEST}-#{TIMESTAMP}"
+    sh "scp -i #{EC2_KEY} -r #{SRC} #{EC2_USER}@#{EC2_HOST}:#{timestamped_dest}"
+    sh "ssh -i #{EC2_KEY} #{EC2_USER}@#{EC2_HOST} 'ln -s #{timestamped_dest} #{DEST}'"
+    start_thin = "thin -C #{DEST}/config.yml -R #{DEST}/config.ru start"
+    sh "ssh -i #{EC2_KEY} #{EC2_USER}@#{EC2_HOST} '#{start_thin}'"
+    start_nginx = "nginx -c #{DEST}/nginx.conf"
+    sh "ssh -i #{EC2_KEY} #{EC2_USER}@#{EC2_HOST} '#{start_nginx}'"
   end
 end
