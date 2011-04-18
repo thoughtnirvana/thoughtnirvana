@@ -18,7 +18,7 @@ namespace :pre do
   COFFEE_DIR = "views/coffee"
   JS_DIR = "public/js"
 
-  desc "Convert sass source files to css files"
+  desc "Convert coffee source files to js files"
   task :convert_coffee do
     Dir.glob("#{COFFEE_DIR}/*.coffee") do |f|
       file_name = File.basename f, ".coffee"
