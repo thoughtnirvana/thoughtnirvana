@@ -2,6 +2,6 @@ environment: production
 user: thin 
 group: thin 
 port: 8000 
-pid: /home/thin/thin/thin.pid
-log: /home/thin/thin/thin.log
+pid: /home/thin/www/thoughtnirvana/tmp/thin.pid
+log: /home/thin/www/thoughtnirvana/tmp/thin.log
 tag: thoughtnirvana
