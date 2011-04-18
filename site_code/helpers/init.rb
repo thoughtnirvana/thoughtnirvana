@@ -8,8 +8,9 @@ class App < Sinatra::Base
     # Auto-version static assets based on md5 or explicity supplied version.
     # Auto-versioned assets can have cache headers set to large durations.
     def auto_version(resource_id, use_hash=true, version=1)
-      public_dir = settings.public || "public"
-      views_dir = settings.views || "views"
+      #public_dir = settings.public || "public"
+      public_dir = settings.public
+      views_dir = settings.views
       dev_js_dir = File.join views_dir, "coffee"
       dev_css_dir = File.join views_dir, "sass"
       dir_name, file_name = File.dirname(resource_id), File.basename(resource_id)
@@ -32,7 +33,9 @@ class App < Sinatra::Base
               sass_resource = file_name.sub(/\.css$/, '.sass')
               new_file_path = File.join dev_css_dir, sass_resource
             end
-            file_path = new_file_path if File.exist? new_file_path
+            if new_file_path
+              file_path = new_file_path if File.exist? new_file_path
+            end
           end
           md5 = "" 
           begin

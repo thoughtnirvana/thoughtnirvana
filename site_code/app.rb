@@ -6,12 +6,14 @@ require 'sass'
 
 class App < Sinatra::Base
   STATIC_DIR = File.join(File.dirname(__FILE__), 'public')
+  VIEWS_DIR = File.join(File.dirname(__FILE__), 'views')
   EXPIRY_DURATION = 15552000
 
   configure do
     enable :dump_errors
     enable :logging
     set :public, STATIC_DIR
+    set :views, VIEWS_DIR 
   end
 
   def send_static_asset(sender, *args)
