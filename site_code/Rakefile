@@ -37,7 +37,7 @@ EC2_USER = "ec2-user"
 EC2_HOST = "ec2-50-17-14-184.compute-1.amazonaws.com"
 SRC="."
 DEST="/home/ec2-user/www/thoughtnirvana"
-TIMESTAMP = Time.now.strftime TIMESTAMP
+TIMESTAMP = Time.now.strftime "%Y-%m-%d %H:%M" 
 
 namespace :pre_release do
   desc "Tag the release."
