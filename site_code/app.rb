@@ -23,42 +23,37 @@ class App < Sinatra::Base
 
   configure :development do
     # Generate css from sass.
-    get %r(/css/ (.+?) \. (.+?\.)? css)x do |f, v| 
+    get %r(/css/ (.+?) \.css (;.+)$)x do |f, v| 
       send_static_asset method(:sass), :"sass/#{f}"
     end
 
     # Generate js from coffeescript.
-    get %r(/js/ (.+?) \. (.+?\.)? js)x do |f, v|
+    get %r(/js/ (.+?) \.js (;.+)$)x do |f, v|
       send_static_asset method(:coffee), :"coffee/#{f}"
     end
   end
 
   # Serve versioned image files if it falls back to the framework.
-  get %r(/img/ (.+?) (\..+?)? (\..+)$)x do |f, v, ext| 
+  get %r(/img/ (.+?)(;.+)$)x do |f, v| 
     send_static_asset method(:send_file),
-      File.join(STATIC_DIR, "img", "#{f}#{ext}" )
+      File.join(STATIC_DIR, "img", "#{f}" )
   end
 
   configure :production do
     # Serve from public directory. 
     # Statics should be served from webserver.
     # These rules are here basically for thin.
-    get %r(/css/ (.+?) \. (.+?\.)? css)x do |f, v| 
+    get %r(/css/ (.+?\.css) (;.+)$)x do |f, v| 
       send_static_asset method(:send_file),
-        File.join(STATIC_DIR, "css", "#{f}.css" )
+        File.join(STATIC_DIR, "css", "#{f}")
     end
 
-    get %r(/js/ (.+?) \. (.+?\.)? js)x do |f, v| 
+    # Generate js from coffeescript.
+    get %r(/js/ (.+?\.js)  (;.+)$)x do |f, v|
       send_static_asset method(:send_file),
-        File.join(STATIC_DIR, "js", "#{f}.js" )
-    end
-
-    get %r(/img/ (.+?) (\..+?)? (\..+)$)x do |f, v, ext| 
-      send_static_asset method(:send_file),
-        File.join(STATIC_DIR, "img", "#{f}#{ext}" )
+        File.join(STATIC_DIR, "js", "#{f}")
     end
   end
-
 end
 
 require_relative 'helpers/init'
